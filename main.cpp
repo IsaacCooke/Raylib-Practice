@@ -1,5 +1,6 @@
 #include <raylib.h>
-#include <iostream>
+
+#include "src/player.h"
 
 int main(){
   const int screenHeight = 400;
@@ -11,21 +12,17 @@ int main(){
 
   SetTargetFPS(60);
 
+  Player player = Player();
+
   while(!WindowShouldClose()){
-    if(IsKeyDown(KEY_RIGHT || KEY_D)) ballPosition.x += 2.0f;
-    if(IsKeyDown(KEY_LEFT || KEY_A)) ballPosition.x -= 2.0f;
-    if(IsKeyDown(KEY_DOWN || KEY_S)) ballPosition.y += 2.0f;
-    if(IsKeyDown(KEY_UP || KEY_W)) ballPosition.y -= 2.0f;
 
     BeginDrawing();
 
     ClearBackground(WHITE);
 
-    DrawCircleV(ballPosition, 50, RED);
+    DrawCircleV(player.getNewPosition(ballPosition), 50, RED);
 
     EndDrawing();
-
-    std::cout << "Frame Running";
   }
 
   CloseWindow();
