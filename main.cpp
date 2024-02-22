@@ -8,19 +8,20 @@ int main(){
 
   InitWindow(screenWidth, screenHeight, "Raylib Test");
 
-  Vector2 ballPosition = {(float)screenWidth/2, (float){screenHeight}/2};
+  Player player;
 
   SetTargetFPS(60);
 
-  Player player = Player();
-
   while(!WindowShouldClose()){
+    // Update
+    player.updatePlayer(player);
 
+    // Draw
     BeginDrawing();
 
     ClearBackground(WHITE);
 
-    DrawCircleV(player.getNewPosition(ballPosition), 50, RED);
+    player.drawPlayer(player);
 
     EndDrawing();
   }

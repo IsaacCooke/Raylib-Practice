@@ -1,2 +1,3 @@
-g++ main.cpp src/player.cpp -o main -lraylib
-./main
+cd build
+cmake --build .
+./game
