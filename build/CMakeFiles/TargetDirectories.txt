@@ -1,0 +1,3 @@
+/home/isaac/Documents/ray/build/CMakeFiles/game.dir
+/home/isaac/Documents/ray/build/CMakeFiles/edit_cache.dir
+/home/isaac/Documents/ray/build/CMakeFiles/rebuild_cache.dir
