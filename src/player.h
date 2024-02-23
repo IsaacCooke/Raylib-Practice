@@ -1,12 +1,16 @@
 #include <raylib.h>
+#include <string>
+
+using namespace std;
 
 class Player {
 public:
-  Vector2 getNewPosition(Vector2 ballPosition);
-  void setupPlayer(Player& player);
-  void updatePlayer(Player& player);
-  void drawPlayer(Player& player);
+  void setupPlayer();
+  void updatePlayer();
+  void drawPlayer();
+  void unloadPlayer();
 protected:
   float speed = 0.5;
   Vector2 position = {50, 50};
+  Texture2D sprite;
 };

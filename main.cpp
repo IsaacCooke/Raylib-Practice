@@ -9,22 +9,25 @@ int main(){
   InitWindow(screenWidth, screenHeight, "Raylib Test");
 
   Player player;
+  player.setupPlayer();
 
   SetTargetFPS(60);
 
   while(!WindowShouldClose()){
     // Update
-    player.updatePlayer(player);
+    player.updatePlayer();
 
     // Draw
     BeginDrawing();
 
     ClearBackground(WHITE);
 
-    player.drawPlayer(player);
+    player.drawPlayer();
 
     EndDrawing();
   }
+
+  player.unloadPlayer();
 
   CloseWindow();
 
