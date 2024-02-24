@@ -1,12 +1,21 @@
 #include "player.h"
-#include <iostream>
-#include <raylib.h>
+
+int framesCounter = 0;
+int framesSpeed = 8;
 
 void Player::setupPlayer(){
-  Player::sprite = LoadTexture("../assets/AnimationSheet.png");
+  sprite = LoadTexture("../assets/AnimationSheet.png");
+
+  frameRec = {
+    0.0f,
+    0.0f,
+    (float)sprite.width/8,
+    (float)sprite.height/6
+  };
 }
 
 void Player::updatePlayer(){
+  // Position
   Vector2 positionDelta = {0, 0};
 
   if(IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_THUMB)){
@@ -20,12 +29,28 @@ void Player::updatePlayer(){
     if(IsKeyDown(KEY_W)) positionDelta.y -= 2.0f;
   }
 
-  Player::position.x += positionDelta.x * Player::speed;
-  Player::position.y += positionDelta.y * Player::speed;
+  position.x += positionDelta.x * speed;
+  position.y += positionDelta.y * speed;
+
+  // Animation
+  framesCounter++;
+  if(framesCounter >= (60/framesSpeed)){
+    framesCounter = 0;
+    Player::currentFrameX++;
+
+    if (Player::currentFrameX > 8) currentFrameX = 0;
+
+    frameRec.x = (float)currentFrameX*(float)sprite.width/8;
+    frameRec.y = /*(float)currentFrameX**/(float)sprite.width/6;
+  }
+}
+
+void Player::getNextFrame(AnimationType animationType){
+  
 }
 
 void Player::drawPlayer(){
-  DrawTextureV(Player::sprite, Player::position, WHITE);
+  DrawTextureRec(Player::sprite, Player::frameRec, Player::position, WHITE);
 }
 
 void Player::unloadPlayer(){

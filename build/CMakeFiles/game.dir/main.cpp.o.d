@@ -100,4 +100,4 @@ CMakeFiles/game.dir/main.cpp.o: /home/isaac/Documents/ray/main.cpp \
  /usr/include/c++/13.2.1/cstddef \
  /usr/include/c++/13.2.1/bits/uses_allocator.h \
  /usr/include/c++/13.2.1/bits/uses_allocator_args.h \
- /usr/include/c++/13.2.1/tuple
+ /usr/include/c++/13.2.1/tuple /home/isaac/Documents/ray/src/animation.h
