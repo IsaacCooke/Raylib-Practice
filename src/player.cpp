@@ -46,7 +46,16 @@ void Player::updatePlayer(){
 }
 
 void Player::getNextFrame(AnimationType animationType){
-  
+  std::vector<int> frameIndices;
+  switch (animationType) {
+    case AnimationType::idle:
+      frameIndices = [1, 10];
+    case AnimationType::walk:
+      frameIndices = [11, 20];
+    default:
+      throw std::cerr("Animation not found");
+      break;
+  }
 }
 
 void Player::drawPlayer(){
