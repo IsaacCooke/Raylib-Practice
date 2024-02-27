@@ -13,8 +13,9 @@ public:
   void unloadPlayer();
 
   void getNextFrame(AnimationType animationType);
+  void normalise(Vector2& vec);
 protected:
-  float speed = 0.5;
+  float speed = 2.0;
   Vector2 position = {50, 50};
   Texture2D sprite;
   Rectangle frameRec;

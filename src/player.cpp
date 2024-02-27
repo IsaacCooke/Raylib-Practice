@@ -1,4 +1,8 @@
 #include "player.h"
+#include <cmath>
+#include <iostream>
+#include <raylib.h>
+#include <math.h>
 
 int framesCounter = 0;
 int framesSpeed = 8;
@@ -29,8 +33,14 @@ void Player::updatePlayer(){
     if(IsKeyDown(KEY_W)) positionDelta.y -= 2.0f;
   }
 
-  position.x += positionDelta.x * speed;
-  position.y += positionDelta.y * speed;
+  normalise(positionDelta);
+
+  if (!isnan(positionDelta.x)){
+    position.x += positionDelta.x * speed;
+  }
+  if (!isnan(positionDelta.y)){
+    position.y += positionDelta.y * speed;
+  }
 
   // Animation
   framesCounter++;
@@ -46,16 +56,16 @@ void Player::updatePlayer(){
 }
 
 void Player::getNextFrame(AnimationType animationType){
-  std::vector<int> frameIndices;
-  switch (animationType) {
-    case AnimationType::idle:
-      frameIndices = [1, 10];
-    case AnimationType::walk:
-      frameIndices = [11, 20];
-    default:
-      throw std::cerr("Animation not found");
-      break;
-  }
+  // std::vector<int> frameIndices;
+  // switch (animationType) {
+  //   case AnimationType::idle:
+  //     frameIndices = [1, 10];
+  //   case AnimationType::walk:
+  //     frameIndices = [11, 20];
+  //   default:
+  //     throw std::cerr("Animation not found");
+  //     break;
+  // }
 }
 
 void Player::drawPlayer(){
@@ -64,4 +74,13 @@ void Player::drawPlayer(){
 
 void Player::unloadPlayer(){
   UnloadTexture(Player::sprite);
+}
+
+void Player::normalise(Vector2& vec){
+  float& x = vec.x;
+  float& y = vec.y;
+  float mod = sqrt(x * x + y * y);
+
+  x = x / mod;
+  y = y / mod;
 }
